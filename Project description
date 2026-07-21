@@ -1,0 +1,12 @@
+The Multimodal Medical Assistant is an AI-powered healthcare application that enables users to interact through voice and medical images. The system converts the patient's speech into text using Whisper Large V3, analyzes the uploaded image and transcribed query using the Llama 4 Scout Vision Multimodal Large Language Model via the Groq API, and generates doctor-like medical responses. The generated response is then converted into natural speech using gTTS or ElevenLabs and presented through a Gradio-based web interface. The project demonstrates the integration of computer vision, speech processing, generative AI, and REST API-based cloud services to provide an interactive healthcare assistance system.
+Technologies Used
+Programming Language: Python
+Frontend/UI: Gradio
+Multimodal LLM: Llama 4 Scout Vision (via Groq API)
+Speech-to-Text (STT): Whisper Large V3
+Text-to-Speech (TTS): gTTS, ElevenLabs
+Speech Processing: SpeechRecognition, PyDub
+Image Processing: Base64 Encoding
+API Integration: Groq API, ElevenLabs API (REST API via Python SDK)
+Environment Management: Python Virtual Environment, .env
+Development Tools: VS Code, Git, GitHub
