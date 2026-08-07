@@ -1,0 +1,140 @@
+🧠 MYBATIS COMPLETE NOTES (FROM YOUR 5 IMAGES)
+🔷 1. ADVANCED RELATIONSHIPS
+✅ Types of Relationships
+🔹 One-to-One
+Use: <association>
+Example: User → Address
+Fetch strategies:
+Nested Select (lazy, may cause N+1)
+Nested Result (JOIN, better performance)
+🔹 One-to-Many
+Use: <collection>
+Example: Department → Employees
+Two approaches:
+Nested Select → ❌ N+1 problem
+Nested Result (JOIN) → ✅ Recommended
+🔹 Many-to-Many
+Use JOIN with mapping
+Example: Student ↔ Course
+Requires:
+Intermediate table
+<collection> inside <collection> (or flatten)
+⚠️ Important Concepts
+Always define <id> → avoids duplicate objects
+Use column alias in JOIN
+Prefer JOIN over nested select for performance
+🔷 2. PARAMETER HANDLING
+✅ Parameter Types
+🔹 Single Parameter
+User getUser(int id);
+🔹 Multiple Parameters
+Use @Param
+User getUser(@Param("id") int id, @Param("name") String name);
+🔹 POJO Parameter
+Pass full object
+User getUser(User user);
+🔹 Map Parameter
+Map<String, Object>
+⚠️ Key Differences
+#{} vs ${}
+Feature
+#{}
+${}
+Type
+PreparedStatement
+String substitution
+Safe
+✅ Yes
+❌ No (SQL Injection)
+Use
+Values
+Table/column names
+❌ Common Traps
+Missing @Param → binding error
+Wrong parameter name in XML
+Using ${} in WHERE
+🔷 3. COLLECTION MAPPING (ONE-TO-MANY)
+✅ Mapping Structure
+<collection property="employees" ofType="Employee">
+   <id property="id" column="emp_id"/>
+</collection>
+🔹 Two Approaches
+1. Nested Select
+Executes multiple queries
+❌ N+1 problem
+2. Nested Result (JOIN)
+Single query
+✅ Best performance
+⚠️ Key Notes
+Always include <id> inside <collection>
+MyBatis groups results automatically
+Use JOIN + alias
+🔷 4. INHERITANCE MAPPING (DISCRIMINATOR)
+✅ Concept
+Maps one table → multiple object types
+Works like switch-case
+🔹 Example
+<discriminator column="type">
+  <case value="EMP" resultType="Employee"/>
+  <case value="MGR" resultType="Manager"/>
+</discriminator>
+⚠️ Key Points
+Only ONE case executes
+Column value decides object type
+Useful in polymorphism
+🧠 Use Case
+Employee table with:
+Employee
+Manager
+Intern
+🔷 5. DYNAMIC SQL
+✅ Core Tags
+🔹 <if>
+Conditional SQL
+<if test="name != null">
+  name = #{name}
+</if>
+🔹 <where>
+Removes leading AND/OR automatically
+🔹 <choose>
+Works like switch-case
+Only one <when> executes
+🔹 <foreach>
+Used for lists (IN clause, batch insert)
+<foreach collection="ids" item="id" separator=",">
+  #{id}
+</foreach>
+🔹 <set>
+Used in UPDATE
+Removes trailing comma
+🔹 <trim>
+Custom WHERE/SET behavior
+⚠️ Common Mistakes
+Missing <where> → broken SQL
+Trailing comma in update
+Wrong IN clause usage
+🔷 6. PERFORMANCE & BEST PRACTICES
+🚀 Best Practices
+Prefer JOIN over nested select
+Always define <id>
+Use #{} (never ${} for values)
+Use resultMap for complex queries
+Use lazy loading carefully
+⚠️ N+1 Problem
+1 query + N extra queries
+Happens in nested select
+Fix: Use JOIN
+🔹 Caching
+First-level → SqlSession
+Second-level → Mapper
+🔷 7. QUICK REVISION (1 PAGE)
+🔥 Must Remember
+<association> → one-to-one
+<collection> → one-to-many
+#{} → safe
+${} → unsafe
+<where> → removes AND
+<set> → removes comma
+<foreach> → for list
+<discriminator> → polymorphism
+JOIN > Nested Select
