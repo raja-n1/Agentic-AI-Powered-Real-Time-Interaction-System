@@ -1,0 +1,12 @@
+Recommended project progression
+For beginners, build it in this order:
+Phase 1: Spring Boot + Maven → REST CRUD => by monday
+Phase 2: Spring Data JPA + MySQL=> by monday
+Phase 3: Angular components + routing
+Phase 4: Angular services + HttpClient
+Phase 5: Angular forms + validation
+Phase 6: Connect Angular to Spring Boot
+Phase 7: Exception handling + DTOs
+Phase 8: JUnit + Mockito + Postman
+Phase 9: Authentication and authorization
+Phase 10: Deploy the complete application
